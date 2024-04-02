@@ -11,10 +11,10 @@ test("Add funds to wallet address", async ({ page }) => {
   await page.locator('//p[text()="Coston2"]').click();
 
   for (const address of walletAddresses) {
-    await page.pause();
+    await page.waitForTimeout(2000);
     await page.locator('//input[@id="address"]').fill(address);
-    await page.pause();
+    await page.waitForTimeout(2000);
     await page.locator('//button[@type="submit"]').click();
-    await page.pause();
+    await page.waitForTimeout(2000);
   }
 });
