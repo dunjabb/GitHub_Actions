@@ -1,0 +1,20 @@
+name: Scheduled test - Add Flare Funds to Wallet
+on:
+  schedule:
+    - cron: "0 9 * * 5"
+
+jobs:
+  Add-Flare-funds-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Cypress
+        run: npm install cypress --save-dev
+
+      - name: Run addFundsToWallet test
+        run: npm run addFunds
+
+
+    # Create a channel on slack a try to import notif for workflow
