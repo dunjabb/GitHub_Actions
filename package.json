@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "addFunds": "test=addFunds npx playwright test addFunds"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dunjabb/GitHub_Actions.git"
