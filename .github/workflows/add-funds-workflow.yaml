@@ -14,8 +14,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Playwright with Chrome browser
-        run: npx playwright install --with-deps chromium
+      - name: Install Playwright
+        run: npx playwright install --with-deps
 
       - name: Run addFundsToWallet test
         run: npm run addFunds
