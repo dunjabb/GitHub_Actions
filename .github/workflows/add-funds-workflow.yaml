@@ -1,7 +1,8 @@
 name: Scheduled test - Add Flare Funds to Wallet
 on:
   schedule:
-    - cron: "15 12 * * *"
+    - cron: "0 13 * * *"
+  workflow_dispatch:
 
 jobs:
   Add-Flare-funds-test:
