@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Playwright
-        run: npm init playwright@latest
+        run: npm install playwright --save-dev
 
       - name: Run addFundsToWallet test
         run: npm run addFunds
