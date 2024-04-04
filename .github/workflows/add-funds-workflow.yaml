@@ -1,7 +1,7 @@
 name: Scheduled test - Add Flare Funds to Wallet
 on:
   schedule:
-    - cron: "15 13 * * *"
+    - cron: "15 15 * * *"
   workflow_dispatch:
 
 jobs:
@@ -11,8 +11,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Playwright
-        run: npm install playwright --save-dev
+      - name: Install Playwright and browsers
+        run: |
+          npm install playwright --save-dev
+          npx playwright install
 
       - name: Run addFundsToWallet test
         run: npm run addFunds
