@@ -1,7 +1,7 @@
 name: Scheduled Add Flare Funds test
 on:
   schedule:
-    - cron: "0 9 * * 5"
+    - cron: "45 10 * * 5"
   workflow_dispatch:
 
 jobs:
