@@ -1,0 +1,7 @@
+Date: Mon Apr 08 2024
+You have received funds too recently, please wait up to 24 hours before trying again
+You have received funds too recently, please wait up to 24 hours before trying again
+You have received funds too recently, please wait up to 24 hours before trying again
+You have received funds too recently, please wait up to 24 hours before trying again
+Successful transfer: 0 
+Failed transfer: 4
