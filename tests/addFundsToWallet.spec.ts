@@ -1,14 +1,16 @@
-import { expect, test } from "@playwright/test";
+import { test } from "@playwright/test";
+import fs from "fs";
 const walletAddresses = JSON.parse(
   JSON.stringify(require("../tests/wallet-address.json"))
 );
 
 test("Add funds to wallet address", async ({ page }) => {
   await page.goto("https://faucet.flare.network/");
-  await page.locator('//div[@class="m-8bffd616 mantine-Flex-root __m__-Rardmullfdla"]').click();
+  await page.locator('(//div[contains(@class, "m-8bffd616")])[1]').click();
   await page.locator('//p[text()="Coston2"]').click();
   let successfulTransactions = 0;
   let failedTransactions = 0;
+  let results: any[] = [];
 
   for (const address of walletAddresses) {
     await page.waitForTimeout(2000);
@@ -17,19 +19,24 @@ test("Add funds to wallet address", async ({ page }) => {
     await page.locator('//button[@type="submit"]').click();
     await page.waitForTimeout(2000);
 
-    const messagePlaceholder = await page.locator('(//p[@class="mantine-focus-auto m-b6d8b162 mantine-Text-root"])[5]');
+    const messagePlaceholder = await page.locator('(//p[contains(@class, "Text-root")])[5]');
     const message = await messagePlaceholder.innerText();
+    results.push(message);
 
-    if (message === `Sent 10 C2FLR to ${address}.`) {
-      console.log(`Sent 10 C2FLR to ${address}.`);
+    if (message.includes("Sent")) {
+      console.log(`${message}`);
       successfulTransactions++;
-    } else if (message === "You have received funds too recently, please wait up to 24 hours before trying again")
-    {
-      console.log("You have received funds too recently, please wait up to 24 hours before trying again");
+    } else if (message.includes("wait up") || message.includes("Captcha")) {
+      console.log(`${message}`);
       failedTransactions++;
     }
   }
-  console.log(`Number of addresses that successfully received FLARE: ${successfulTransactions}`);
-  console.log(`Number of addresses with failed FLARE transaction: ${failedTransactions}`
-  );
+
+  results.push(`Successful transfer: ${successfulTransactions} \nFailed transfer: ${failedTransactions}`)
+  const data = results.join("\n");
+  fs.writeFile("test-results/results.txt", data, (error) => {
+    if (error) {
+      console.error("An error occurred while writing to the file:", error);
+    }
+  });
 });

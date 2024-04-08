@@ -5,6 +5,7 @@
 - [Description](#description)
 - [Prerequisites](#prerequisites)
 - [Git Guidelines](#git-guidelines)
+- [How to run tests](#how-to-run-tests)
 
 ## Description
 This repository covers some of the lessons from Udemy courses for practicing Playwright automation tool and GitHub Actions for setting up workflows.
@@ -28,3 +29,6 @@ This repository covers some of the lessons from Udemy courses for practicing Pla
 - When commiting follow the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) rules:
 
   ```git commit -m “feat: Short task description [JIRA_TICKET_ID]“```
+
+
+## How to run tests
