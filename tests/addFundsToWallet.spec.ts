@@ -21,20 +21,21 @@ test("Add funds to wallet address", async ({ page }) => {
 
     const messagePlaceholder = await page.locator('(//p[contains(@class, "Text-root")])[5]');
     const message = await messagePlaceholder.innerText();
-    results.push(message);
+    results.push( message);
 
     if (message.includes("Sent")) {
       console.log(`${message}`);
-      successfulTransactions++;
-    } else if (message.includes("wait up") || message.includes("Captcha")) {
+      successfulTransactions++; 
+    } else if (message.includes("wait up") || message.includes("captcha")) {
       console.log(`${message}`);
       failedTransactions++;
     }
   }
 
-  results.push(`Successful transfer: ${successfulTransactions} \nFailed transfer: ${failedTransactions}`)
-  const data = results.join("\n");
-  fs.writeFile("test-results/results.txt", data, (error) => {
+  results.push(`Successful transfer: ${successfulTransactions} \nFailed transfer: ${failedTransactions}`);
+  const date = new Date().toDateString();
+  const fileData = `Date: ${date}\n${results.join("\n")}`;
+    fs.writeFile("results.txt", fileData, (error) => {
     if (error) {
       console.error("An error occurred while writing to the file:", error);
     }
